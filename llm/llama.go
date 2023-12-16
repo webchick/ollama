@@ -496,7 +496,7 @@ func waitForServer(llm *llama) error {
 		select {
 		case <-llm.exitCh:
 			// failed to start subprocess
-			return fmt.Errorf("llama runner process has terminated")
+			return fmt.Errorf("llama runner process has terminated; check ~/.ollama/logs/server.log or journalctl -u ollama")
 		case <-ticker.C:
 			if time.Now().After(expiresAt) {
 				// timeout
